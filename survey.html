@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>💘 Important Questions</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body{
+      margin:0;
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:white;
+      overflow:hidden;
+
+      background:
+        radial-gradient(circle at 20% 20%, #ffd6e7 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, #cdb4ff 0%, transparent 45%),
+        linear-gradient(160deg, #ffafcc, #bde0fe, #ffc8dd);
+    }
+
+    /* floating background hearts */
+    .bg-heart{
+      position:fixed;
+      opacity:0.42;
+      animation: float 12s linear infinite;
+      pointer-events:none;
+      user-select:none;
+    }
+    @keyframes float{
+      from { transform: translateY(110vh); }
+      to   { transform: translateY(-15vh); }
+    }
+
+    .card{
+      width:min(560px, 92vw);
+      background: rgba(255,255,255,0.25);
+      backdrop-filter: blur(12px);
+      border-radius:28px;
+      padding:28px 24px;
+      text-align:center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+      border:1px solid rgba(255,255,255,0.35);
+      position:relative;
+    }
+
+    .badge{
+      display:inline-block;
+      padding:8px 12px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:13px;
+      background: rgba(255,255,255,0.55);
+      color:#6a3c7a;
+      margin-bottom:12px;
+    }
+
+    h1{
+      margin:0 0 8px;
+      font-size:28px;
+      color:#5a2a6d;
+    }
+
+    p{
+      margin:0 0 18px;
+      font-size:16px;
+      color:#6a3c7a;
+      line-height:1.35;
+    }
+
+    .btns{
+      display:flex;
+      gap:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    button{
+      border:0;
+      border-radius:18px;
+      padding:12px 18px;
+      font-weight:900;
+      font-size:15px;
+      cursor:pointer;
+      transition: transform .08s ease, filter .2s ease;
+      user-select:none;
+    }
+    button:active{ transform: scale(.96); }
+
+    .primary{
+      background:#ff6fa8;
+      color:white;
+      box-shadow: 0 6px 18px rgba(255,105,180,.35);
+    }
+    .primary:hover{ filter:brightness(1.08); }
+
+    .secondary{
+      background:rgba(255,255,255,0.65);
+      color:#6a3c7a;
+    }
+    .secondary:hover{ filter:brightness(1.05); }
+
+    .tiny{
+      margin-top:14px;
+      font-size:13px;
+      opacity:.85;
+      color:#6a3c7a;
+    }
+
+    .hidden{ display:none; }
+
+    /* pop hearts on final accept */
+    .heart{
+      position:fixed;
+      font-size:22px;
+      pointer-events:none;
+      animation: pop 1.5s ease-out forwards;
+      user-select:none;
+    }
+    @keyframes pop{
+      0% { transform: translateY(0) scale(.6); opacity:0; }
+      15%{ opacity:1; }
+      100%{
+        transform: translateY(-190px) scale(1.35);
+        opacity:0;
+      }
+    }
+
+    /* little progress dots */
+    .dots{
+      display:flex;
+      gap:8px;
+      justify-content:center;
+      margin: 6px 0 14px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background: rgba(255,255,255,0.45);
+      border:1px solid rgba(255,255,255,0.55);
+    }
+    .dot.on{ background:#ff6fa8; border-color: rgba(255,255,255,0.8); }
+  </style>
+</head>
+<body>
+
+  <script>
+    // background hearts
+    const bgHearts = ["💗","💖","💘","💕","💞"];
+    for(let i=0;i<26;i++){
+      const h = document.createElement("div");
+      h.className="bg-heart";
+      h.textContent=bgHearts[Math.floor(Math.random()*bgHearts.length)];
+      h.style.left = Math.random()*100 + "vw";
+      h.style.animationDuration = (8 + Math.random()*9) + "s";
+      h.style.fontSize = (12 + Math.random()*16) + "px";
+      h.style.top = (Math.random()*110) + "vh";
+      document.body.appendChild(h);
+    }
+  </script>
+
+  <div class="card">
+    <div class="badge" id="badge">Mandatory Verification Step 1</div>
+
+    <div class="dots" id="dots"></div>
+
+    <h1 id="qTitle">Hello Sav 💘</h1>
+    <p id="qText">Before I ask the important question, I must conduct a brief (and extremely serious) survey.</p>
+
+    <div class="btns" id="btns"></div>
+
+    <div class="tiny" id="foot">This survey is certified by MrDreamyBots.</div>
+
+    <div id="finalYes" class="hidden">
+      <div style="font-size:34px; font-weight:1000; color:#5a2a6d; margin:0 0 8px;">YAY!! 💖</div>
+      <h1 style="margin:0 0 8px;">It’s official 🐸💘</h1>
+      <p style="margin:0; color:#6a3c7a;">Happy Valentine’s Day, Sav.</p>
+      <div style="display:inline-block;margin-top:14px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,0.55);font-weight:800;color:#6a3c7a;">
+        Status: Accepted
+      </div>
+    </div>
+  </div>
+
+<script>
+  const badge = document.getElementById("badge");
+  const qTitle = document.getElementById("qTitle");
+  const qText  = document.getElementById("qText");
+  const btns   = document.getElementById("btns");
+  const dotsEl = document.getElementById("dots");
+  const foot   = document.getElementById("foot");
+  const finalYes = document.getElementById("finalYes");
+
+  // You can change these questions however you want.
+  const steps = [
+    {
+      badge: "Mandatory Verification Step 1",
+      title: "Quick question.",
+      text: "On a scale from 1 to 10… are frogs objectively adorable?",
+      buttons: [
+        { label:"Yes 🐸", next:true },
+        { label:"Also yes 🐸💚", next:true }
+      ],
+      onPick: (choice) => {}
+    },
+    {
+      badge: "Mandatory Verification Step 2",
+      title: "Important follow-up.",
+      text: "If you found a tiny frog wearing a crown, do you:",
+      buttons: [
+        { label:"Bow respectfully 👑", next:true },
+        { label:"Offer a snack tribute 🍓", next:true }
+      ]
+    },
+    {
+      badge: "Mandatory Verification Step 3",
+      title: "Critical compatibility test.",
+      text: "Choose your preferred Valentine snack strategy:",
+      buttons: [
+        { label:"Sweet treats 🍫", next:true },
+        { label:"Snack chaos (a little of everything) 😈", next:true }
+      ]
+    },
+    {
+      badge: "Mandatory Verification Step 4",
+      title: "Final pre-check.",
+      text: "Do you agree that Evan deserves one (1) Valentine kiss (virtual) coupon?",
+      buttons: [
+        { label:"Approved ✅", next:true },
+        { label:"Approved with enthusiasm ✅✅", next:true }
+      ]
+    },
+    {
+      badge: "FINAL QUESTION",
+      title: "Okay… for real now 💘",
+      text: "Sav, will you be my Valentine?",
+      buttons: [
+        { label:"Accept 💘", finalAccept:true, primary:true },
+        { label:"Let me think 😳", tease:true }
+      ]
+    }
+  ];
+
+  let idx = 0;
+
+  function renderDots(){
+    dotsEl.innerHTML = "";
+    for(let i=0;i<steps.length;i++){
+      const d = document.createElement("div");
+      d.className = "dot" + (i === idx ? " on" : "");
+      dotsEl.appendChild(d);
+    }
+  }
+
+  function popHeart(){
+    const hearts = ["💘","💗","💖","💕","💞"];
+    const h = document.createElement("div");
+    h.className="heart";
+    h.textContent = hearts[Math.floor(Math.random()*hearts.length)];
+    h.style.left = (35 + Math.random()*30) + "%";
+    h.style.bottom = "18%";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),1500);
+  }
+
+  function showStep(){
+    renderDots();
+
+    const s = steps[idx];
+    badge.textContent = s.badge;
+    qTitle.textContent = s.title;
+    qText.textContent  = s.text;
+
+    btns.innerHTML = "";
+    s.buttons.forEach((b) => {
+      const btn = document.createElement("button");
+      btn.textContent = b.label;
+      btn.className = b.primary ? "primary" : (idx === steps.length-1 ? "secondary" : "secondary");
+
+      btn.onclick = () => {
+        if (b.tease){
+          // comedy: make the button text change when she "hesitates"
+          btn.textContent = "The correct answer is Accept 😌";
+          btn.className = "secondary";
+          return;
+        }
+
+        if (b.finalAccept){
+          // show final screen
+          badge.textContent = "✅ Survey Complete";
+          qTitle.classList.add("hidden");
+          qText.classList.add("hidden");
+          btns.classList.add("hidden");
+          dotsEl.classList.add("hidden");
+          foot.classList.add("hidden");
+          finalYes.classList.remove("hidden");
+
+          // celebration
+          for(let i=0;i<28;i++) setTimeout(popHeart, i*55);
+          return;
+        }
+
+        // normal next
+        idx = Math.min(idx + 1, steps.length - 1);
+        showStep();
+      };
+
+      btns.appendChild(btn);
+    });
+  }
+
+  showStep();
+</script>
+
+</body>
+</html>
